@@ -1,6 +1,6 @@
 # get '/' do
  #   File.read(File.join('app.views', 'index.html'))
-
+=begin
 
  def humanized_time_ago(time_ago_in_minutes)
     if time_ago_in_minutes >= 60
@@ -9,9 +9,15 @@
       "#{time_ago_in_minutes} minutes ago"
     end
   end
-  
+=end
+
   get '/' do
-    @finstagram_post_shark = {
+    @finstagram_posts = FinstagramPost.order(created_at: :desc)
+    erb :index
+  end
+
+=begin    
+   @finstagram_post_shark = {
       username: "sharky_j",
       avatar_url: "http://naserca.com/images/sharky_j.jpg",
       photo_url: "http://naserca.com/images/shark.jpg",
@@ -49,6 +55,9 @@
         text: "lunchtime! ;)"
       }]
     }
-    @finstagram_posts = [@finstagram_post_shark, @finstagram_post_whale, @finstagram_post_marlin]
+   @finstagram_posts = [@finstagram_post_shark, @finstagram_post_whale, @finstagram_post_marlin]
+
+
     erb(:index)
   end
+=end
